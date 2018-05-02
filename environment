@@ -1,0 +1,39 @@
+
+if ! [ -x "$(command -v adb)" ]; then
+  echo 'Error: adb is not installed.'
+else
+  alias adb_launch_home="adb shell am start -c android.intent.category.HOME -a android.intent.action.MAIN"
+  alias adb_launch_setting="adb shell am start -a android.settings.SETTINGS"
+  alias adb_launch_developer="adb shell am start -n com.android.settings/.DevelopmentSettings"
+
+  alias adb_keyevent_menu="adb shell input keyevent 1"
+  alias adb_keyevent_home="adb shell input keyevent 3"
+  alias adb_keyevent_back="adb shell input keyevent 4"
+  alias adb_keyevent_power="adb shell input keyevent 26"
+  alias adb_keyevent_power="adb shell input keyevent 27"
+
+  alias adb_show_system_property="adb shell getprop"
+  alias adb_show_package_installed="adb shell pm list packages -f"
+  alias adb_show_available_memory="adb shell dumpsys meminfo | grep \"Free RAM\""
+
+  alias adb_airplane_mode_enable="adb shell am settings put global airplane_mode_on 1 && broadcast -a android.intent.action.AIRPLANE_MODE"
+  alias adb_airplane_mode_disable="adb shell am settings put global airplane_mode_on 0 && broadcast -a android.intent.action.AIRPLANE_MODE"
+
+  # Usage: adb_set_brightness value
+  alias adb_set_brightness="adb shell settings put system screen_brightness"
+fi
+
+if ! [ -x "$(command -v jarsigner)" ]; then
+  echo 'Error: jarsigner is not installed.'
+else
+  # Usage: aat_dump_apk_sign apk_path
+  alias aat_dump_apk_sign="jarsigner -verify -verbose -certs"
+fi
+
+if ! [ -x "$(command -v keytool)" ]; then
+  echo 'Error: keytool is not installed.'
+else
+  alias aat_show_apk_sign="keytool -list -printcert -jarfile"
+fi
+
+
